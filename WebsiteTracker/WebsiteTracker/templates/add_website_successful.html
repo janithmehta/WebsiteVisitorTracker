@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+
+{% block navigation %}
+    <li><a href="/sites"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Websites</a></li>
+    <li><a href="/add_website"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Add Website</a> </li>
+    <li><a href="/visits"><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;View Visits</a></li>
+{% endblock %}
+
+{% block navigation_right %}
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;Logout</a></li>
+    </ul>
+{% endblock %}
+
+
+{% block content %}
+
+    <h2>Website Added Successfully</h2>
+    <p>Please enter this code in your website</p>
+    <code><pre>
+    &lt;script>
+    (function() {
+        var img = new Image();
+        img.src = "http://localhost:9000/sites/{{ site_id }}/visit?event=PageLoad";
+    })();
+    &lt;/script>
+    &lt;noscript>
+    &lt;img src="http://localhost:9000/sites/{{ site_id }}/visit?event=PageLoad" width="1" height="1" />
+    &lt;/noscript>
+    </pre></code>
+
+{% endblock %}

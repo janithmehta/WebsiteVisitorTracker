@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+
+{% block navigation %}
+    <li><a href="/sites"><span class="glyphicon glyphicon-globe"></span>&nbsp;&nbsp;Websites</a></li>
+    <li><a href="/add_website"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;Add Website</a> </li>
+    <li><a href="/visits"><span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;View Visits</a></li>
+{% endblock %}
+
+{% block navigation_right %}
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;Logout</a></li>
+    </ul>
+{% endblock %}
+
+
+{% block content %}
+
+    <table class="table table-responsive table-striped">
+    <tr>
+        <th>Id</th>
+        <th>Website</th>
+        <th>Browser</th>
+        <th>Date</th>
+        <th>IP Address</th>
+        <th>Event</th>
+    </tr>
+    {% for item in visits %}
+    <tr>
+        <td>{{ item.id }}</td>
+        {% for site in sites %}
+            {% if item.site_id_id == site.id %}
+                <td>{{ site.base_url }}</td>
+            {% endif %}
+        {% endfor %}
+        <td>{{ item.browser }}</td>
+        <td>{{ item.date }}</td>
+        <td>{{ item.ip_address }}</td>
+        <td>{{ item.event }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+
+{% endblock %}
